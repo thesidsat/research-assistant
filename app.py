@@ -21,7 +21,9 @@ import re
 
 load_dotenv()
 # Set up OpenAI client with custom base URL
-
+print("Environment variables:")
+for key, value in os.environ.items():
+    print(f"{key}: {value}")
 AIML_API_KEY = os.environ.get("OPENAI_API_KEY")
 client = OpenAI(
     api_key=AIML_API_KEY,
