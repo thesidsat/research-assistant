@@ -36,9 +36,10 @@ This repo provides an API for searching and summarizing scientific papers using 
 
 ## Usage 
 1. Start the server: `python main.py`
-2.  The API will be available at `http://localhost:9999` 3. Use the `/search` endpoint to search and summarize papers
+2.  The API will be available at `http://localhost:9999`  Use the `/search` endpoint to search and summarize papers
 3. run `python client.py`
 4. The API will return a JSON response with summaries of the found papers.
+5. Pass paperid in payload to generate tts of the summary to the following endpoint `http://localhost:9999/text-to-speech`
 
 ## Customization 
 To modify the summarization prompt, edit the `prompt` variable in the `summarize_papers` function in `main.py`. - To change the GPT model used for summarization, update the `model` parameter in the `client.chat.completions.create` call. - To extend the workflow, add new nodes to the `StateGraph` in `main.py`.
