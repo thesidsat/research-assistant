@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import MainScreen from "../MainScreen/MainScreen";
-import { Box, Card, CardContent, Typography, Chip } from '@mui/material';
+import { Box, Card, CardContent, Typography, IconButton } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import StopIcon from '@mui/icons-material/Stop';
 import { ResearchPaper } from '../types/types';
-import './SummarizedScreen.css'; // Import the CSS file for styles
+import './SummarizedScreen.css';
 
 export default function SummarizedScreen() {
     const location = useLocation();
     const { paper }: { paper: ResearchPaper } = location.state || { paper: null };
 
+    const audioRef = useRef<HTMLAudioElement>(new Audio("../../assets/voice-example.mp3"));
+    const [isPlaying, setIsPlaying] = useState(false);
+
     if (!paper) {
         return <Typography variant="h6" color="error" textAlign="center">No paper data available.</Typography>;
     }
+
+    const toggleAudio = () => {
+        if (isPlaying) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+        } else {
+            audioRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
 
     const isSummaryObject = (summary: any): summary is {
         "Main Objective": string;
@@ -35,85 +50,20 @@ export default function SummarizedScreen() {
                             <Typography variant="body1" sx={{ marginBottom: 1 }}>
                                 <strong>Published:</strong> {paper.published}
                             </Typography>
-
                             <Typography variant="body1" sx={{ marginBottom: 1 }}>
                                 <strong>Main Objective:</strong>
                                 {isSummaryObject(paper.summary) ? paper.summary["Main Objective"] : paper.summary}
                             </Typography>
-
-                            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-                                <strong>Key Innovation:</strong>
-                                {isSummaryObject(paper.summary) ? paper.summary["Key Innovation"] : "N/A"}
-                            </Typography>
-
-                            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-                                <strong>Methodology:</strong>
-                                {isSummaryObject(paper.summary) ? paper.summary["Methodology"] : "N/A"}
-                            </Typography>
-
-                            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-                                <strong>Principal Findings:</strong>
-                                {isSummaryObject(paper.summary) ? paper.summary["Principal Findings"] : "N/A"}
-                            </Typography>
-
-                            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-                                <strong>Implications for the Field:</strong>
-                                {isSummaryObject(paper.summary) ? paper.summary["Implications for the Field"] : "N/A"}
-                            </Typography>
+                        </Box>
+                        {/* Play/Stop audio button */}
+                        <Box display="flex" justifyContent="center" sx={{ marginTop: 2 }}>
+                            <IconButton onClick={toggleAudio} aria-label="play audio">
+                                {isPlaying ? <StopIcon fontSize="large" /> : <PlayCircleIcon fontSize="large" />}
+                            </IconButton>
                         </Box>
                     </CardContent>
                 </Card>
             </Box>
         </MainScreen>
-
-        //to use manupilation of the data for the Key Innovation etc, it is broken.
-    // <MainScreen text={paper.title}>
-    //     <Box className="summarized-screen" sx={{ padding: 2, overflowY: 'auto' }}>
-    //         <Card sx={{ maxWidth: '90%', margin: 2 }}>
-    //             <CardContent>
-    //                 <Box display="flex" flexDirection="column" textAlign="left">
-    //                     <Box display="flex" alignItems="center" mb={1}>
-    //                         <Chip
-    //                             color="default"
-    //                             label={`Research paper: ${paper.title}`}
-    //                             sx={{ backgroundColor: 'black', color: 'white', marginRight: 1 }}
-    //                         />
-    //                     </Box>
-    //                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
-    //                         <strong>Authors:</strong> {paper.authors}
-    //                     </Typography>
-    //                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
-    //                         <strong>Published:</strong> {paper.published}
-    //                     </Typography>
-    //
-    //                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
-    //                         <strong>Main Objective:</strong>
-    //                         {summaryData["Main Objective"] || "N/A"}
-    //                     </Typography>
-    //
-    //                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
-    //                         <strong>Key Innovation:</strong>
-    //                         {summaryData["Key Innovation"] || "N/A"}
-    //                     </Typography>
-    //
-    //                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
-    //                         <strong>Methodology:</strong>
-    //                         {summaryData.Methodology || "N/A"}
-    //                     </Typography>
-    //
-    //                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
-    //                         <strong>Principal Findings:</strong>
-    //                         {summaryData["Principal Findings"] || "N/A"}
-    //                     </Typography>
-    //
-    //                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
-    //                         <strong>Implications for the Field:</strong>
-    //                         {summaryData["Implications for the Field"] || "N/A"}
-    //                     </Typography>
-    //                 </Box>
-    //             </CardContent>
-    //         </Card>
-    //     </Box>
-    // </MainScreen>
     );
 }

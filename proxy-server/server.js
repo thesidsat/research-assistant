@@ -1,26 +1,20 @@
 const express = require('express');
-const request = require('request');
+const axios = require('axios');
 const cors = require('cors');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.post('/proxy', (req, res) => {
-    const options = {
-        url: 'https://research-assistant-ouwx.onrender.com/search',
-        method: 'POST',
-        json: true,
-        body: req.body
-    };
-
-    request(options, (error, response, body) => {
-        if (error) {
-            return res.status(500).send(error);
-        }
-        console.log("API Response:", body); // Log the API response
-        res.send(body);
-    });
+app.post('/proxy', async (req, res) => {
+    try {
+        const response = await axios.post('https://research-assistant-ouwx.onrender.com/search', req.body);
+        console.log("API Response:", response.data); // Log the API response
+        res.send(response.data);
+    } catch (error) {
+        console.error("API Error:", error); // Log the error
+        res.status(500).send(error.message);
+    }
 });
 
 app.listen(3001, () => {
