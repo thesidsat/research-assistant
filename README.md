@@ -1,7 +1,5 @@
 # Langgraph Hackathon - Research Assistant
 
-  
-
 This repo provides an API for searching and summarizing scientific papers using LangChain, LangGraph, and AI/ML API. It allows users to search for research papers on arXiv and get concise summaries with the option to read out the summaries
 
   
@@ -21,12 +19,8 @@ This repo provides an API for searching and summarizing scientific papers using 
 - LangGraph workflow
 
 
-  
-  
-
 ## Installation
 
- 
 1. Clone the repository:
 
 2. Install dependencies:

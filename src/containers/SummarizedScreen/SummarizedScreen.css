@@ -1,0 +1,6 @@
+.summarized-screen {
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+}
