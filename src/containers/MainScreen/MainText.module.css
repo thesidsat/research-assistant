@@ -1,0 +1,26 @@
+.mainTextContainer {
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainTextTitle {
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+
+.alignLeft {
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+.titleAlignLeft {
+    text-align: left;
+}
