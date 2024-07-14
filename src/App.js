@@ -35,7 +35,7 @@ const Main = () => {
             <header className="App-header">
                 <Routes>
                     <Route path="/" element={<MainScreen text={"Empower knowledge with every search"} />} />
-                    <Route path="/search" element={<MainScreen text={"Display with ease"}><Search /></MainScreen>} />
+                    <Route path="/search" element={<MainScreen text={"Bringing knowledge to you"}><Search /></MainScreen>} />
                     <Route path="/searching" element={<SearchingScreen />} />
                     <Route path="/summarized" element={<SummarizedScreen />} />
                 </Routes>

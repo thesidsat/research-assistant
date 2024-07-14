@@ -8,8 +8,9 @@
 
 .searchBarContainer {
     display: flex;
-    width: 360px;
-    position: relative; 
+    width: 600px;
+    position: relative;
+    margin-top: 1rem;
 }
 
 .icon {
@@ -30,9 +31,13 @@
     transition: all 0.2s ease;
 }
 
+.searchLabel i {
+    margin-right: 10px;
+}
+
 .searchBar {
     flex: 1;
-    padding: 10px 15px;
+    padding: 20px 15px;
     border: 2px solid #ccc;
     border-radius: 25px 0 0 25px;
     font-size: 16px;
@@ -48,4 +53,5 @@
     background-color: black;
     color: white;
     border: none;
+    font-size: 1.2rem;
     border-radius: 0 25px 25px 0;}

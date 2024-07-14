@@ -19,7 +19,7 @@ export default function SearchingScreen() {
     const allPapers = papers.filter(paper =>
         paper.title.toLowerCase().includes(searchTermInput.toLowerCase())
     );
-    
+
     console.log(allPapers);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function SearchingScreen() {
     };
 
     return (
-        <MainScreen text="Searching...">
+        <MainScreen text="Results">
             <Box display="flex" flexDirection="column" alignItems="flex-start" sx={{ padding: 2 }}>
                 {allPapers.length > 0 ? (
                     allPapers.map((paper: ResearchPaper) => (

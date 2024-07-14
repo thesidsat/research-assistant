@@ -34,10 +34,10 @@ const Search: React.FC = () => {
     return (
         <div onClick={handleClick}>
             <div className={styles.searchBarContainer}>
-                {!isFocused && (
+                {!isFocused && !searchTerm && (
                     <label htmlFor="search" className={styles.searchLabel}>
                         <i className="fa fa-search icon" aria-hidden="true"></i>
-                        What is in your mind?
+                        What are we researching today?
                     </label>
                 )}
                 <input

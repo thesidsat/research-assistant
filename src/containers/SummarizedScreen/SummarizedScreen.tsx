@@ -11,7 +11,7 @@ export default function SummarizedScreen() {
     const location = useLocation();
     const { paper }: { paper: ResearchPaper } = location.state || { paper: null };
 
-    const audioRef = useRef<HTMLAudioElement>(new Audio("../../assets/voice-example.mp3"));
+    const audioRef = useRef<HTMLAudioElement>(new Audio("/voice-example.mp3"));
     const [isPlaying, setIsPlaying] = useState(false);
 
     if (!paper) {
@@ -55,12 +55,7 @@ export default function SummarizedScreen() {
                                 {isSummaryObject(paper.summary) ? paper.summary["Main Objective"] : paper.summary}
                             </Typography>
                         </Box>
-                        {/* Play/Stop audio button */}
-                        <Box display="flex" justifyContent="center" sx={{ marginTop: 2 }}>
-                            <IconButton onClick={toggleAudio} aria-label="play audio">
-                                {isPlaying ? <StopIcon fontSize="large" /> : <PlayCircleIcon fontSize="large" />}
-                            </IconButton>
-                        </Box>
+                        <img src="/didi.jpeg" alt="didi" height="100" onClick={toggleAudio} />
                     </CardContent>
                 </Card>
             </Box>
